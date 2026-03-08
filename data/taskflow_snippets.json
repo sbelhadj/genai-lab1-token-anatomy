@@ -1,0 +1,54 @@
+{
+  "phrases": {
+    "en_formal": "Please provide a comprehensive summary of this pull request, highlighting the key changes.",
+    "en_casual": "Sum up this PR for me — what changed?",
+    "en_technical": "Generate an abstractive summary of the diff, listing modified functions and their purposes.",
+
+    "fr": "Veuillez résumer cette pull request de manière concise.",
+    "ar": "يرجى تلخيص طلب السحب هذا بشكل موجز.",
+    "zh": "请简要总结这个拉取请求。",
+    "en_base": "Please summarize this pull request concisely.",
+
+    "python": "def create_task(title: str, assignee: str, priority: int = 1) -> Task:",
+    "javascript": "const fetchTasks = async (userId: string, filters: TaskFilter): Promise<Task[]> => {",
+    "sql": "SELECT t.title, u.name FROM tasks t JOIN users u ON t.assignee_id = u.id WHERE t.status = 'open';",
+
+    "emoji_commit": "feat: ✨ add user authentication with OAuth2 🔐 (#142)",
+    "url": "https://api.taskflow.dev/v2/tasks?status=open&assignee=alice&limit=50",
+    "json_config": "{\"database\": {\"host\": \"localhost\", \"port\": 5432, \"name\": \"taskflow_db\"}}",
+    "markdown": "## API Endpoints\\n- `GET /tasks` — list all tasks\\n- `POST /tasks` — create a new task\\n```python\\nresponse = client.get('/tasks')\\n```",
+
+    "metrics": "Build #4523 passed: 98.7% coverage, 342 tests, avg latency 23ms, p99 = 187ms.",
+    "iso_date": "Sprint deadline: 2025-09-15T17:00:00Z. Retrospective: 2025-09-16T10:00:00+01:00.",
+    "error_msg": "TaskNotFoundError: Task with id='task_a1b2c3d4' not found in database 'taskflow_prod'.",
+
+    "system": "You are DevAssist, a helpful coding assistant for the TaskFlow project. Respond only in JSON format.",
+    "few_shot": "Input: 'fix login bug' → category: bug\\nInput: 'add dark mode' → category: feature\\nInput: 'update README' →",
+    "cot": "Let's think step by step. First, identify the function signature. Then, list the parameters. Finally, describe the return type."
+  },
+  "groups": {
+    "A_paraphrases": ["en_formal", "en_casual", "en_technical"],
+    "B_multilingual": ["en_base", "fr", "ar", "zh"],
+    "C_code": ["python", "javascript", "sql"],
+    "D_edge_cases": ["emoji_commit", "url", "json_config", "markdown"],
+    "E_numbers": ["metrics", "iso_date", "error_msg"],
+    "F_prompt_patterns": ["system", "few_shot", "cot"]
+  },
+  "taskflow_code_samples": [
+    {
+      "name": "create_task",
+      "code": "def create_task(title: str, assignee: str, priority: int = 1) -> Task:\n    \"\"\"Create a new task in the TaskFlow system.\"\"\"\n    task = Task(title=title, assignee=assignee, priority=priority)\n    db.session.add(task)\n    db.session.commit()\n    return task",
+      "description": "Core function for task creation in the TaskFlow API"
+    },
+    {
+      "name": "get_overdue_tasks",
+      "code": "def get_overdue_tasks(tasks: list[Task], current_date: datetime) -> list[Task]:\n    \"\"\"Return all tasks whose due_date is before current_date and status is not 'completed'.\"\"\"\n    pass  # TODO: implement",
+      "description": "Used in portfolio exercise — students prompt the model to complete this"
+    },
+    {
+      "name": "TaskFilter",
+      "code": "class TaskFilter(BaseModel):\n    status: Optional[str] = None\n    assignee: Optional[str] = None\n    priority: Optional[int] = None\n    due_before: Optional[datetime] = None",
+      "description": "Pydantic model used for filtering tasks in the API"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "_comment": "Pre-computed sampling outputs for Lab 1. Use these ONLY if Ollama is unavailable. Generated with llama3.2:3b.",
+
+  "temperature_sweep": {
+    "prompt": "Explain in one paragraph why unit testing is important for a REST API like TaskFlow.",
+    "results": {
+      "0.0": [
+        "Unit testing is crucial for a REST API like TaskFlow because it ensures that individual components of the application function correctly in isolation before they are integrated into the larger system. By writing tests for each endpoint, model, and service layer, developers can catch bugs early in the development cycle, reducing the cost and effort of fixing issues later. Unit tests also serve as living documentation, clearly defining the expected behavior of each component. For a REST API that handles task management, this means verifying that task creation, retrieval, updating, and deletion all work as expected under various conditions, including edge cases like invalid input or missing authentication.",
+        "Unit testing is crucial for a REST API like TaskFlow because it ensures that individual components of the application function correctly in isolation before they are integrated into the larger system. By writing tests for each endpoint, model, and service layer, developers can catch bugs early in the development cycle, reducing the cost and effort of fixing issues later. Unit tests also serve as living documentation, clearly defining the expected behavior of each component. For a REST API that handles task management, this means verifying that task creation, retrieval, updating, and deletion all work as expected under various conditions, including edge cases like invalid input or missing authentication."
+      ],
+      "0.5": [
+        "Unit testing plays a vital role in maintaining the reliability of a REST API like TaskFlow. Each endpoint needs to handle various request types, validate input data, interact with the database correctly, and return appropriate responses. Without unit tests, subtle bugs can creep in during refactoring or when adding new features, potentially causing data corruption or security vulnerabilities. By testing each function independently, developers build confidence that the system behaves predictably.",
+        "Testing individual units of code is essential for building a robust REST API. In a task management system like TaskFlow, unit tests verify that operations like creating tasks, assigning users, and filtering by priority work correctly under normal and edge-case conditions. They provide a safety net during development that catches regressions before they reach production."
+      ],
+      "1.0": [
+        "For any REST API, unit testing creates a foundation of trust in the codebase. TaskFlow handles critical workflow data — tasks, assignments, deadlines — and errors can cascade across teams relying on the system. Tests validate each handler, serializer, and database query independently, making it safe to refactor and extend the API without fear of breaking existing functionality.",
+        "Unit tests are the backbone of reliable software delivery. A REST API like TaskFlow serves multiple clients simultaneously, and each endpoint must correctly parse inputs, enforce business rules, and return well-structured responses. Without automated tests covering these behaviors, every code change becomes a gamble that could introduce regressions affecting downstream users and integrations."
+      ],
+      "1.5": [
+        "In software craft, unit testing brings clarity where complexity lurks. TaskFlow endpoints juggle authentication tokens, database transactions, and validation rules — tests pin each behavior to verifiable expectations. Without them, maintaining an API becomes archaeology: digging through layers of code hoping nothing breaks when touched.",
+        "Tests illuminate the hidden contracts of code. For a REST API managing tasks across teams, every route carries implicit promises: correct status codes, valid JSON, proper error handling. Unit tests make those promises explicit and enforceable, transforming fragile assumptions into documented guarantees."
+      ],
+      "2.0": [
+        "Testing whispers truth to ambitious APIs. TaskFlow dances between request parsing and database ritual, each endpoint a ceremony of validation. Unit tests anchor these ceremonies — without them, the API floats in uncertain possibility, each deployment a roll of dice across distributed teams awaiting reliable responses.",
+        "Code breathes through tests. Like a nervous system detecting pain before injury cascades, unit tests for TaskFlow catch malformed responses, broken filters, corrupted priority fields. The API's surface area multiplies with features — tests ensure growth doesn't become decay."
+      ]
+    }
+  },
+
+  "constraint_interaction": {
+    "loose": {
+      "0.0": ["TaskFlow is a modern task management REST API built with FastAPI and Python. It provides endpoints for creating, reading, updating, and deleting tasks, as well as user management and team collaboration features. The API supports filtering, pagination, and real-time notifications through WebSocket connections."],
+      "0.7": ["TaskFlow is an open-source task management platform designed for development teams. It offers a RESTful API for managing tasks, projects, and team workflows. Key features include priority-based task sorting, deadline tracking, and integration with common development tools."],
+      "1.5": ["TaskFlow emerged from the frustration of scattered project management. It's a Python-based REST API that weaves task tracking with team dynamics — assignments flow through endpoints like water through channels, each filtered by priority, deadline, or the chaos of team reorganization."]
+    },
+    "medium": {
+      "0.0": ["Here are 3 advantages of using FastAPI for TaskFlow's REST API:\n\n• **Automatic API documentation**: FastAPI generates interactive Swagger/OpenAPI docs automatically from type hints, making it easy for developers to explore and test endpoints.\n\n• **Type safety and validation**: Built on Pydantic, FastAPI validates request and response data automatically, catching malformed inputs before they reach business logic.\n\n• **High performance**: FastAPI is one of the fastest Python frameworks, leveraging async/await for non-blocking I/O operations critical for a task management API handling concurrent requests."],
+      "0.7": ["Three key advantages of FastAPI for building TaskFlow:\n\n• **Built-in validation**: Pydantic models validate all incoming data automatically, preventing invalid tasks from entering the database.\n\n• **Async support**: Native async/await handles multiple simultaneous API requests efficiently, essential for a team collaboration tool.\n\n• **Developer experience**: Auto-generated docs, type hints, and editor support make the API easy to develop and maintain."],
+      "1.5": ["FastAPI brings three compelling strengths to TaskFlow:\n\n• **Schema-driven development**: Every endpoint self-documents through type annotations, creating a contract between API and consumers that evolves with the code.\n\n• **Performance without complexity**: Async capabilities rival Node.js throughput while maintaining Python's readability — crucial when task queries spike during sprint planning.\n\n• **Validation as architecture**: Pydantic models enforce data integrity at the boundary, transforming runtime errors into compile-time-like guarantees."]
+    },
+    "tight": {
+      "0.0": ["{\"name\": \"create_task\", \"params\": [\"title\", \"assignee\", \"priority\"]}"],
+      "0.7": ["{\"name\": \"create_task\", \"params\": [\"title\", \"assignee\", \"priority\"]}"],
+      "1.5": ["{\"name\": \"create_task\", \"params\": [\"title\", \"assignee\", \"priority\"]}"]
+    }
+  }
+}
