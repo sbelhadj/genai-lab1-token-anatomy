@@ -1,0 +1,51 @@
+name: Autograding
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  autograding:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install --no-cache-dir transformers tokenizers sentencepiece \
+            pandas matplotlib numpy requests pytest jsonschema nbformat
+
+      - name: Run metric tests
+        id: test_metrics
+        run: |
+          echo "::group::Running metric tests"
+          pytest tests/test_metrics.py -v --tb=short 2>&1 || true
+          echo "::endgroup::"
+
+      - name: Run notebook structure tests
+        id: test_notebook
+        run: |
+          echo "::group::Running notebook structure tests"
+          pytest tests/test_notebook_structure.py -v --tb=short 2>&1 || true
+          echo "::endgroup::"
+
+      - name: Generate grading summary
+        if: always()
+        run: |
+          echo "## Lab 1 — Autograding Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Metric Implementation Tests" >> $GITHUB_STEP_SUMMARY
+          pytest tests/test_metrics.py -v --tb=line 2>&1 | tail -20 >> $GITHUB_STEP_SUMMARY || true
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Notebook Structure Tests" >> $GITHUB_STEP_SUMMARY
+          pytest tests/test_notebook_structure.py -v --tb=line 2>&1 | tail -20 >> $GITHUB_STEP_SUMMARY || true
